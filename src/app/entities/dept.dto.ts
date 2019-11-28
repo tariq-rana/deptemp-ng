@@ -1,3 +1,3 @@
-export interface DeptDTO{
+export class DeptDTO{
     deptName:string;
 }

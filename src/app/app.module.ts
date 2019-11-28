@@ -1,11 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {UiModule } from './ui.module';
+import { DeptService } from './services/dept.service';
+import { EmpService } from './services/emp.service';
+
 import { EmpComponent } from './emp/emp.component';
 import { DeptComponent } from './dept/dept.component';
 import { ShowEmpComponent } from './emp/show-emp/show-emp.component';
@@ -15,8 +19,6 @@ import { ShowDeptComponent } from './dept/show-dept/show-dept.component';
 import { AddDeptComponent } from './dept/add-dept/add-dept.component';
 import { EditDeptComponent } from './dept/edit-dept/edit-dept.component';
 
-import { DeptService } from './services/dept.service';
-import { EmpService } from './services/emp.service';
 
 @NgModule({
   declarations: [
@@ -32,11 +34,15 @@ import { EmpService } from './services/emp.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     UiModule
   ],
   providers: [DeptService,EmpService],
+  entryComponents:[
+    AddDeptComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,8 +1,16 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { 
+    MatButtonModule, MatTableModule, MatIconModule, MatSortModule,MatInputModule,
+    MatDialogModule 
+} from '@angular/material';
 
 const ui = [
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule,
+    MatSortModule,
+    MatInputModule,
+    MatDialogModule
 ];
 
 @NgModule({
