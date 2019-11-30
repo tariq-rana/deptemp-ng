@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialogRef} from '@angular/material';
+import { MatDialogRef } from '@angular/material';
+import { DeptService } from 'src/app/services/dept.service';
+import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-add-dept',
@@ -8,12 +12,41 @@ import {MatDialogRef} from '@angular/material';
 })
 export class AddDeptComponent implements OnInit {
 
-  constructor(private dialogBox:MatDialogRef<AddDeptComponent>) { }
+  constructor(private dialogBox: MatDialogRef<AddDeptComponent>,
+    private deptService: DeptService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.resetForm();
+    
   }
-  
-  onClose(){
-      this.dialogBox.close();
+
+  onClose() {
+    this.deptService.filter('Register click');
+    this.dialogBox.close();
+    
   }
+
+  onSubmit(form: NgForm) {
+    this.deptService.insertDept({ deptName: this.deptService.formData.deptName }).subscribe(data => {
+      if (data.deptName === this.deptService.formData.deptName) {
+        this.onClose(); 
+        this._snackBar.open("Dept Added",'Dismiss',{duration:3000})
+                    
+      }
+    });
+  }
+
+  resetForm(form?: NgForm) {
+    this.deptService.formData = {
+      deptId: 0,
+      deptName: ''
+    }
+
+    if (form != null) {
+      form.resetForm(this.deptService.formData);
+    }
+  }
+
+
 }

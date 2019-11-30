@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { 
     MatButtonModule, MatTableModule, MatIconModule, MatSortModule,MatInputModule,
-    MatDialogModule 
+    MatDialogModule, MatSnackBarModule 
 } from '@angular/material';
 
-const ui = [
+const UI = [
     MatButtonModule,
     MatTableModule,
     MatIconModule,
     MatSortModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 ];
 
 @NgModule({
-    imports: [ui],
-    exports:[ui]
+    imports: [UI],
+    exports:[UI]
     
   })
   export class UiModule { }

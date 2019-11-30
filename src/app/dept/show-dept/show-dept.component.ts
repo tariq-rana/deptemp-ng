@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSort, MatDialog, MatDialogConfig} from '@angular/material';
+import { MatTableDataSource, MatSort, MatDialog, MatDialogConfig } from '@angular/material';
 
 import { DeptService } from 'src/app/services/dept.service';
 import { DeptEntity } from 'src/app/entities/dept.entity';
@@ -16,11 +16,15 @@ export class ShowDeptComponent implements OnInit {
   displayedColumns = ['options', 'deptId', 'deptName'];
   
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-
-  constructor(private deptService: DeptService,
-              private dialog:MatDialog) { }
-
   
+  constructor(private deptService: DeptService, private dialog: MatDialog) {
+
+    this.deptService.listen().subscribe((m: any) => {
+      console.log(m);
+      this.findAllDept();
+
+    })
+  }
 
   ngOnInit() {
     this.findAllDept();

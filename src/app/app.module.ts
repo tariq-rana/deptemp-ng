@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
 
 import {UiModule } from './ui.module';
 import { DeptService } from './services/dept.service';
@@ -34,15 +36,14 @@ import { EditDeptComponent } from './dept/edit-dept/edit-dept.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
     UiModule
   ],
   providers: [DeptService,EmpService],
-  entryComponents:[
-    AddDeptComponent
-  ],
+  entryComponents:[AddDeptComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
