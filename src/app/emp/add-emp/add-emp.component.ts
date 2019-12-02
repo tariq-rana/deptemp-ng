@@ -5,6 +5,8 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { DeptEntity } from 'src/app/entities/dept.entity';
 import { EmpService } from 'src/app/services/emp.service';
 import { EmpDTO } from 'src/app/entities/emp.dto';
+import { DeptService } from 'src/app/services/dept.service';
+import { CompileMetadataResolver } from '@angular/compiler';
 
 @Component({
   selector: 'app-add-emp',
@@ -13,13 +15,17 @@ import { EmpDTO } from 'src/app/entities/emp.dto';
 })
 export class AddEmpComponent implements OnInit {
 
+  public deptList:DeptEntity[]=[];
+
   constructor(private dialogBox: MatDialogRef<AddEmpComponent>,
-    private empService: EmpService,
+    private empService: EmpService, private deptService:DeptService,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.resetForm();
+    this.findDeptAll();
   }
+
   onClose() {
     this.empService.filter('Register click');
     this.dialogBox.close();
@@ -42,10 +48,8 @@ export class AddEmpComponent implements OnInit {
     };
       
     this.empService.insertEmp(emp).subscribe(data => {
-       if (data.empName === emp.empName) {
         this.onClose();
         this.snackBar.open("Emp Added", 'Dismiss', { duration: 3000, verticalPosition: 'top' });
-      }
     });
   }
 
@@ -63,6 +67,13 @@ export class AddEmpComponent implements OnInit {
     if (form != null) {
       form.resetForm(this.empService.formData);
     }
+  }
+
+
+   findDeptAll():void{
+      this.deptService.findAllDept().subscribe(dept =>{
+        this.deptList = dept;
+      })
   }
 
 }

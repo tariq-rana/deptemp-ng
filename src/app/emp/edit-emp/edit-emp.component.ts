@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpService } from 'src/app/services/emp.service';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { NgForm } from '@angular/forms';
+
+import { EmpService } from 'src/app/services/emp.service';
 import { EmpDTO } from 'src/app/entities/emp.dto';
 import { DeptEntity } from 'src/app/entities/dept.entity';
+import { DeptService } from 'src/app/services/dept.service';
 
 @Component({
   selector: 'app-edit-emp',
@@ -11,12 +13,15 @@ import { DeptEntity } from 'src/app/entities/dept.entity';
   styleUrls: ['./edit-emp.component.css']
 })
 export class EditEmpComponent implements OnInit {
+  
+  public deptList:DeptEntity[]=[];
+
   constructor(private dialogBox: MatDialogRef<EditEmpComponent>,
-    private empService: EmpService,
+    private empService: EmpService, private deptService:DeptService,
     private snackBar: MatSnackBar) { }
 
     ngOnInit() {
-  
+      this.findDeptAll();
     }
   
     onClose() {
@@ -40,11 +45,14 @@ export class EditEmpComponent implements OnInit {
       };
         
       this.empService.updateEmp(fd.empId,emp).subscribe(data => {
-        if (data.empName === fd.empName) {
           this.onClose();
           this.snackBar.open("Emp Updated", 'Dismiss', { duration: 3000, verticalPosition: 'top' });
-  
-        }
       });
     }
+
+    findDeptAll():void{
+      this.deptService.findAllDept().subscribe(dept =>{
+        this.deptList = dept;
+      })
+  }
 }

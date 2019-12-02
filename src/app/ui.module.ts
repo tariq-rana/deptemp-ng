@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { 
     MatButtonModule, MatTableModule, MatIconModule, MatSortModule,MatInputModule,
-    MatDialogModule, MatSnackBarModule, MatPaginatorModule 
+    MatDialogModule, MatSnackBarModule, MatPaginatorModule, MatNativeDateModule
+    
 } from '@angular/material';
+
+import {MatDatepickerModule } from '@angular/material/datepicker';
 
 const UI = [
     MatButtonModule,
@@ -12,7 +15,9 @@ const UI = [
     MatInputModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 ];
 
 @NgModule({

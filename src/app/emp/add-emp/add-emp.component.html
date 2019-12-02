@@ -5,7 +5,7 @@
             <mat-icon>close</mat-icon>
         </button>
         </div>
-        
+
         <div style="overflow: auto; height: 450px;">
             <form #form="ngForm" (submit)="onSubmit(form)"  autocomplete="off">
                 <div class="mt-4 input-group">
@@ -44,12 +44,18 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Dept</span>   
                         </div>
-                        <input required type="text" 
+                      
+                         <select required 
                             class="form-control"
                             name="deptId"
                             #deptId="ngModel"
-                            [(ngModel)]="empService.formData.deptId"
-                        >
+                            [(ngModel)]="empService.formData.deptId"> 
+                            <option *ngFor="let dept of deptList" [value] = "dept.deptId">
+                                    {{dept.deptName}}
+                            </option>
+                        </select>
+                        
+
                 </div>
                 <div class="text-left text-danger" 
                     *ngIf="deptId.invalid && deptId.touched">
@@ -60,12 +66,17 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Join Date</span>   
                         </div>
-                        <input required  type="text" 
-                            class="form-control"
+                        
+                        <input type= "text" [matDatepicker]="picker"
+                            placeholder="Date of Join"
+                            class="form-control" 
                             name="joinDate"
                             #joinDate="ngModel"
                             [(ngModel)]="empService.formData.joinDate"
                         >
+                        <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                            
                 </div>
                 <div class="text-left text-danger" 
                     *ngIf="joinDate.invalid && joinDate.touched">

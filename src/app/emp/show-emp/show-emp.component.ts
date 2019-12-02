@@ -7,6 +7,7 @@ import { AddEmpComponent } from '../add-emp/add-emp.component';
 import { EditEmpComponent } from '../edit-emp/edit-emp.component';
 import { EmpRO } from 'src/app/entities/emp.ro';
 
+
 @Component({
   selector: 'app-show-emp',
   templateUrl: './show-emp.component.html',
@@ -69,13 +70,11 @@ export class ShowEmpComponent implements OnInit {
 
   }
 
-  onDelete(empId: number) {
+   onDelete(empId: number) {
     if (confirm('Are you sure ?')) {
       this.empService.deleteEmp(empId).subscribe(emp => {
-        if (emp.emptId == empId) {
           this.snackBar.open('Deleted', 'Dismiss', { duration: 3000, verticalPosition: 'top' })
           this.findAllEmp();
-        }
       });
     }
 
