@@ -1,1 +1,81 @@
-<p>add-emp works!</p>
+<div class="d-flex justify-content-between">
+        <h4>Add New Department</h4>
+        
+        <button mat-button (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+        </div>
+        
+        <div style="overflow: auto; height: 450px;">
+            <form #form="ngForm" (submit)="onSubmit(form)"  autocomplete="off">
+                <div class="mt-4 input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Emp Name</span>   
+                    </div>
+                    <input required minlength="2" type="text" 
+                        class="form-control"
+                        name="empName"
+                        #empName="ngModel"
+                        [(ngModel)]="empService.formData.empName"
+                    >
+                </div>
+                <div class="text-left text-danger" 
+                    *ngIf="empName.invalid && empName.touched">
+                    Enter Emp Name
+                </div>
+    
+                <div class="mt-4 input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Email</span>   
+                        </div>
+                        <input required  type="text" 
+                            class="form-control"
+                            name="mailId"
+                            #mailId="ngModel"
+                            [(ngModel)]="empService.formData.mailId"
+                        >
+                </div>
+                <div class="text-left text-danger" 
+                    *ngIf="mailId.invalid && mailId.touched">
+                    Enter Email
+                </div>
+                      
+                <div class="mt-4 input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Dept</span>   
+                        </div>
+                        <input required type="text" 
+                            class="form-control"
+                            name="deptId"
+                            #deptId="ngModel"
+                            [(ngModel)]="empService.formData.deptId"
+                        >
+                </div>
+                <div class="text-left text-danger" 
+                    *ngIf="deptId.invalid && deptId.touched">
+                    Enter Department
+                </div>
+                
+                <div class="mt-4 input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Join Date</span>   
+                        </div>
+                        <input required  type="text" 
+                            class="form-control"
+                            name="joinDate"
+                            #joinDate="ngModel"
+                            [(ngModel)]="empService.formData.joinDate"
+                        >
+                </div>
+                <div class="text-left text-danger" 
+                    *ngIf="joinDate.invalid && joinDate.touched">
+                    Enter Join Date
+                </div>
+    
+                <button class="mt-4" mat-raised-button 
+                        color="primary" 
+                        type="submit"
+                        [disabled]="form.invalid">Save Employee</button>
+            </form>
+        </div>
+        

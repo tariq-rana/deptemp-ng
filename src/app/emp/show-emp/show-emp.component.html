@@ -1,1 +1,50 @@
-<p>show-emp works!</p>
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" >
+</mat-form-field>
+
+<div>
+    <mat-table [dataSource]="dataSourceEmp" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="options">
+            <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-icon-button (click)="onEdit(row)">
+                    <mat-icon>launch</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="onDelete(row.empId)">
+                    <mat-icon>delete_outline</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="empId">
+            <mat-header-cell *matHeaderCellDef  mat-sort-header>Emp Id</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.empId}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="empName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Emp Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.empName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="mailId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>EMail</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.mailId}} </mat-cell>
+        </ng-container>
+        <!-- <ng-container matColumnDef="deptId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>DeptId</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.deptId}} </mat-cell>
+        </ng-container> -->
+        <ng-container matColumnDef="deptName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Dept</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.deptName}} </mat-cell>
+        </ng-container>        
+        <ng-container matColumnDef="joinDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Join Date</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.joinDate}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    
+</div>
+<button class="mt-2" mat-raised-button Button color="primary" (click)="onAdd()">Add Employee</button>

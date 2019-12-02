@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { 
     MatButtonModule, MatTableModule, MatIconModule, MatSortModule,MatInputModule,
-    MatDialogModule, MatSnackBarModule 
+    MatDialogModule, MatSnackBarModule, MatPaginatorModule 
 } from '@angular/material';
 
 const UI = [
@@ -11,7 +11,8 @@ const UI = [
     MatSortModule,
     MatInputModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
 ];
 
 @NgModule({

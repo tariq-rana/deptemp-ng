@@ -43,7 +43,11 @@ import { EditDeptComponent } from './dept/edit-dept/edit-dept.component';
     UiModule
   ],
   providers: [DeptService,EmpService],
-  entryComponents:[AddDeptComponent],
+  entryComponents:[
+    AddDeptComponent,EditDeptComponent,
+    EditEmpComponent,AddEmpComponent,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

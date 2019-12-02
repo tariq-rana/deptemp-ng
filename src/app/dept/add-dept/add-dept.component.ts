@@ -14,25 +14,25 @@ export class AddDeptComponent implements OnInit {
 
   constructor(private dialogBox: MatDialogRef<AddDeptComponent>,
     private deptService: DeptService,
-    private _snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.resetForm();
-    
+
   }
 
   onClose() {
     this.deptService.filter('Register click');
     this.dialogBox.close();
-    
+
   }
 
   onSubmit(form: NgForm) {
     this.deptService.insertDept({ deptName: this.deptService.formData.deptName }).subscribe(data => {
       if (data.deptName === this.deptService.formData.deptName) {
-        this.onClose(); 
-        this._snackBar.open("Dept Added",'Dismiss',{duration:3000})
-                    
+        this.onClose();
+        this.snackBar.open("Dept Added", 'Dismiss', { duration: 3000, verticalPosition: 'top' });
+
       }
     });
   }
