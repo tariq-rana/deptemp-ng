@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import {DatePipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,7 +43,7 @@ import { EditDeptComponent } from './dept/edit-dept/edit-dept.component';
     FormsModule,
     UiModule
   ],
-  providers: [DeptService,EmpService],
+  providers: [DeptService,EmpService,DatePipe],
   entryComponents:[
     AddDeptComponent,EditDeptComponent,
     EditEmpComponent,AddEmpComponent,

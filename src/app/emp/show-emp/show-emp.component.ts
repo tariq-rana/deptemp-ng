@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import {DatePipe } from '@angular/common';
+
 import { MatTableDataSource, MatSort, MatDialog, MatDialogConfig, MatSnackBar, MatPaginator } from '@angular/material';
 
 import { EmpService } from 'src/app/services/emp.service';
@@ -6,7 +8,6 @@ import { EmpEntity } from 'src/app/entities/emp.entity';
 import { AddEmpComponent } from '../add-emp/add-emp.component';
 import { EditEmpComponent } from '../edit-emp/edit-emp.component';
 import { EmpRO } from 'src/app/entities/emp.ro';
-
 
 @Component({
   selector: 'app-show-emp',
@@ -24,7 +25,8 @@ export class ShowEmpComponent implements OnInit {
 
   constructor(private readonly empService: EmpService, 
     private dialog: MatDialog,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private datePipe:DatePipe) {
     this.empService.listen().subscribe((m: any) => {
       this.findAllEmp();
     })
@@ -41,7 +43,9 @@ export class ShowEmpComponent implements OnInit {
       allEmp = emp.map((e: EmpEntity) => {
         return {
           empId: e.empId, empName: e.empName, mailId: e.mailId,
-          joinDate: e.joinDate, deptId: e.dept.deptId, deptName: e.dept.deptName
+          joinDate: e.joinDate, transJoinDate: this.datePipe.transform(e.joinDate,'dd/MM/yyyy'),
+          deptId: e.dept.deptId, deptName: e.dept.deptName,
+          
         };
       });
 

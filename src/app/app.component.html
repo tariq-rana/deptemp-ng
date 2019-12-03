@@ -1,28 +1,19 @@
 <div class="container">
-  <h3 class="d-flex justify-content-center" >Angular 8 API Demo</h3>
-  <h5 class="d-flex justify-content-center">Employee Management Portal</h5>
+  <h3 class="d-flex justify-content-center">Angular 8 API Demo</h3>
+  <h5 class="d-flex justify-content-center">Employee Management Portal by Art of Engineer</h5>
 
 
   <nav class="navbar navbar-expand-sm bg-light navbar-dark">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <button class="m-1 btn btn-light btn-outline-primary" Button label="DeptScreen"
-          (click)="deptScreen = true; empScreen=false">
+        <button class="m-1 btn btn-light btn-outline-primary" Button label="DeptScreen" [routerLink]="[ '/dept']">
           Departments
         </button>
-        <button class="m-1 btn btn-light btn-outline-primary" Button label="EmpScreen"
-          (click)="empScreen=true;deptScreen = false">
+        <button class="m-1 btn btn-light btn-outline-primary" Button label="EmpScreen" [routerLink]="[ '/emp']">
           Employees
         </button>
       </li>
     </ul>
   </nav>
-
-  <app-dept *ngIf="deptScreen"></app-dept>
-  <app-emp *ngIf="empScreen"></app-emp>
-</div>
-
-
-<!-- 
   <router-outlet></router-outlet>
- -->
+</div>

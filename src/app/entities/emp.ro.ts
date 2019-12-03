@@ -3,6 +3,7 @@ export class EmpRO{
     empName:string;
     mailId:string;
     joinDate:Date;
+    transJoinDate?:String;
     deptId:number;
     deptName:string;
 }
